@@ -86,6 +86,9 @@ class MainActivity : Activity() {
             13f, muted, false
         ))
         page.addView(label("پشتیبانی شبکه گستر مجال • 09386066008", 13f, cyan, true).apply { setPadding(0, 26, 0, 12) })
+        page.addView(actionButton("ورود به مدیریت تجهیزات MikroTik", true) {
+            startActivity(Intent(this, RouterManagerActivity::class.java))
+        })
         setContentView(ScrollView(this).apply { addView(page) })
         renderCompanies()
     }
