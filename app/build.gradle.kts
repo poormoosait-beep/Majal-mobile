@@ -19,11 +19,15 @@ android {
         buildConfig = true
     }
 
-    dependencies {\n        implementation("androidx.security:security-crypto:1.1.0-alpha06")\n    }\n\n    compileOptions {
+    compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
         jvmTarget = "17"
     }
+}
+
+dependencies {
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
 }
