@@ -2,7 +2,7 @@ name: Build MAJAL Mobile APK
 
 on:
   push:
-    branches: [ "main", "feature/openvpn-company-profiles" ]
+    branches: [ "main", "feature/openvpn-company-profiles", "feature/routeros-management" ]
   workflow_dispatch:
 
 jobs:
