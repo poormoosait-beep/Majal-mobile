@@ -140,6 +140,13 @@ class MainActivity : Activity() {
                 }
                 startActivityForResult(pick, REQUEST_PROFILE)
             })
+            if (!company.imported && company.profileUri.isNotBlank()) {
+                card.addView(actionButton("تأیید کردم؛ پروفایل در OpenVPN ذخیره شد", false) {
+                    company.imported = true
+                    saveCompanies()
+                    renderCompanies()
+                })
+            }
             val row = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL; layoutDirection = View.LAYOUT_DIRECTION_RTL }
             row.addView(actionButton("اتصال", true) { connect(company) },
                 LinearLayout.LayoutParams(0, dp(48), 1f).apply { marginEnd = dp(5) })
@@ -219,11 +226,10 @@ class MainActivity : Activity() {
                 toast("OpenVPN را از فهرست انتخاب کن و Import را کامل کن.")
             } catch (_: Exception) { toast("ارسال فایل انجام نشد. OpenVPN for Android را نصب کن.") }
         }
-        // This is only a user acknowledgement; the VPN app remains the source of truth for connection state.
-        company.imported = true
+        // The user must confirm the profile was actually imported in OpenVPN.
         saveCompanies()
         renderCompanies()
-        statusLabel.text = "بعد از Import در OpenVPN، اتصال شرکت را امتحان کن."
+        statusLabel.text = "پس از ذخیره پروفایل در OpenVPN، به این صفحه برگرد و تأیید Import را بزن."
     }
 
     private fun actionButton(title: String, primary: Boolean, onClick: () -> Unit): Button =
